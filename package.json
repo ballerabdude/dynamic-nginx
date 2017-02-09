@@ -1,0 +1,11 @@
+{
+  "name": "dynamic-nginx",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {},
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "nginx-conf": "^1.3.0"
+  }
+}
