@@ -18,6 +18,14 @@ NginxConfFile.create('nginx.tmp.conf', (err, conf) => {
   conf.nginx.http.server._add('location', config.location);
   conf.nginx.http.server.location._add('proxy_pass', config.proxy_pass);
 
+  conf.nginx.http.server._add('location', '/');
+  conf.nginx.http.server.location[1]._add('proxy_pass', config.proxy_pass);
+  conf.nginx.http.server.location[1]._add('proxy_redirect', 'off');
+  conf.nginx.http.server.location[1]._add('proxy_set_header', 'Host $host');
+  conf.nginx.http.server.location[1]._add('proxy_set_header', 'X-Real-IP $remote_addr');
+  conf.nginx.http.server.location[1]._add('proxy_set_header', 'X-Forwarded-For $proxy_add_x_forwarded_for');
+  conf.nginx.http.server.location[1]._add('proxy_set_header', 'X-Forwarded-Host $server_name');
+
 
   conf.on('flushed', function() {
 

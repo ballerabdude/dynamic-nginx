@@ -38,6 +38,6 @@ EXPOSE 80
 
 RUN rm /etc/nginx/conf.d/*
 
-# CMD ["node" "nginx-conf.js"]
+CMD ["bash","-c","node nginx-conf.js --listen 80 --location / --proxy_pass http://gateway:8080/ --nginx_location /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
 
 
